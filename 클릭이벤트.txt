@@ -1,0 +1,23 @@
+* 클릭이벤트
+2d : button 사용 가능
+	button onclick 이벤트 사용
+	 오브젝트.AddComponent<Button>().onClick.AddListener(함수);
+
+3D : button 사용 불가 => 3D니까 평면이 아니니까
+	Raycast 사용 => 화면에 보이는 커서 위치에 collider에 hit한 obj에 component추가로 스크립트 추가
+
+ex)
+ void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                hit.collider.GetComponent<CubeRaycast>().DoChange();
+            }
+
+        }
+    }
